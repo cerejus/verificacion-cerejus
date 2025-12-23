@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Verificación de Certificado - CEREJUS</title>
+  <style>
+    :root{
+      --ink:#0f172a;
+      --muted:#6b7280;
+      --bg:#f5f6fa;
+      --card:#ffffff;
+      --border:#e5e7eb;
+      --primary:#1e3a8a;
+      --primary2:#16307a;
+      --soft:#eef2ff;
+    }
+    *{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans","Helvetica Neue",sans-serif;}
+    body{margin:0;background:var(--bg);color:var(--ink);}
+    /* Top bar (similar vibe) */
+    header{
+      background:#fff;
+      border-bottom:1px solid var(--border);
+    }
+    .topbar{
+      max-width:980px;
+      margin:0 auto;
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .left{
+      display:flex;align-items:center;gap:12px;
+    }
+    .menu{
+      width:36px;height:36px;border-radius:10px;
+      border:1px solid var(--border);
+      background:#fff;
+      display:grid;place-items:center;
+      font-size:18px;color:#111827;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;
+    }
+    .logo{
+      width:38px;height:38px;border-radius:999px;
+      background:var(--primary);
+      color:#fff;font-weight:900;
+      display:grid;place-items:center;
+      letter-spacing:.5px;
+      font-size:14px;
+    }
+    .brandname{
+      line-height:1.1;
+    }
+    .brandname .t1{font-weight:900; letter-spacing:.2px;}
+    .brandname .t2{color:var(--muted); font-size:12px;}
+    .right{
+      display:flex;align-items:center;gap:10px;
+    }
+    .searchIcon{
+      width:36px;height:36px;border-radius:10px;
+      border:1px solid var(--border);
+      background:#fff;
+      display:grid;place-items:center;
+      font-size:18px;color:#111827;
+    }
+
+    main{
+      max-width:980px;
+      margin:0 auto;
+      padding:26px 16px 40px;
+    }
+    h1{
+      margin:10px 0 8px;
+      font-size:42px;
+      font-weight:800;
+      color:var(--primary);
+      text-align:center;
+      letter-spacing:.2px;
+    }
+    .subtitle{
+      text-align:center;
+      color:var(--muted);
+      max-width:760px;
+      margin:0 auto 22px;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .panel{
+      max-width:760px;
+      margin:0 auto;
+      background:transparent;
+    }
+    .inputBox{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:center;
+      margin:18px 0 12px;
+    }
+    input{
+      width:min(620px, 100%);
+      padding:14px 14px;
+      border-radius:8px;
+      border:2px solid #f59e0b55; /* similar warm outline */
+      outline:none;
+      font-size:16px;
+      background:#fff;
+    }
+    input:focus{
+      border-color:#f59e0bcc;
+      box-shadow:0 0 0 4px rgba(245,158,11,.12);
+    }
+    button{
+      width:min(620px, 100%);
+      padding:14px 14px;
+      border-radius:8px;
+      border:0;
+      background:var(--primary);
+      color:#fff;
+      font-size:16px;
+      font-weight:800;
+      cursor:pointer;
+    }
+    button:hover{background:var(--primary2);}
+
+    .card{
+      max-width:760px;
+      margin:18px auto 0;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 2px 14px rgba(15, 23, 42, .06);
+      display:none;
+    }
+    .cardBody{padding:18px 18px;}
+    .row{
+      padding:14px 0;
+      border-top:1px solid var(--border);
+    }
+    .row:first-child{border-top:none;padding-top:0;}
+    .label{
+      font-size:18px;
+      font-weight:900;
+      margin-bottom:4px;
+    }
+    .value{
+      color:#111827;
+      font-size:18px;
+    }
+    .error{
+      max-width:760px;
+      margin:12px auto 0;
+      display:none;
+      background:#fff1f2;
+      border:1px solid #fecdd3;
+      color:#9f1239;
+      padding:12px 14px;
+      border-radius:12px;
+      font-weight:600;
+    }
+    .note{
+      max-width:760px;
+      margin:14px auto 0;
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.5;
+    }
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+      margin-top:22px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div class="left">
+        <div class="menu" aria-hidden="true">☰</div>
+        <div class="brand">
+          <div class="logo">CJ</div>
+          <div class="brandname">
+            <div class="t1">CEREJUS</div>
+            <div class="t2">Centro de Registro Jurídico</div>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="searchIcon" aria-hidden="true">🔍</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <h1>Verificación de Certificado</h1>
+    <p class="subtitle">
+      ¿Cómo verificar un certificado?<br>
+      Ingrese el “Número del certificado” y haga clic en el botón “Buscar”.
+    </p>
+
+    <section class="panel">
+      <div class="inputBox">
+        <input id="certInput" type="text" value="CJ-0050-2023-0025" placeholder="Ej.: CJ-0050-2023-0025" autocomplete="off" />
+        <button id="searchBtn">Buscar</button>
+      </div>
+
+      <div id="errorBox" class="error"></div>
+
+      <div id="resultCard" class="card">
+        <div class="cardBody">
+          <div class="row">
+            <div class="label">Libro N°</div>
+            <div class="value" id="libroVal">—</div>
+          </div>
+
+          <div class="row">
+            <div class="label">Registro</div>
+            <div class="value" id="registroVal">—</div>
+          </div>
+
+          <div class="row">
+            <div class="label">Nombre</div>
+            <div class="value" id="nombreVal">—</div>
+          </div>
+
+          <div class="row">
+            <div class="label">Apellidos</div>
+            <div class="value" id="apellidosVal">—</div>
+          </div>
+
+          <div class="row">
+            <div class="label">Diplomado</div>
+            <div class="value" id="diplomadoVal">—</div>
+          </div>
+
+          <div class="row">
+            <div class="label">Finalización</div>
+            <div class="value" id="fechaVal">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        Nota: Esta verificación acredita la existencia del registro/certificación según los datos consignados. No constituye pronunciamiento institucional sobre el contenido del diplomado.
+      </div>
+
+      <div class="footer">© CEREJUS — Verificación de Certificados</div>
+    </section>
+  </main>
+
+  <script>
+    // ====== BASE DE DATOS (DEMO) ======
+    // Puedes agregar más certificados duplicando el objeto.
+    const CERTIFICADOS = [
+      {
+        // "Número del certificado" (el que tipea la persona)
+        id: "CJ-0050-2023-0025",
+
+        // Datos que deben mostrarse
+        libro: "0050-2023-CEREJUS",
+        registro: "0025",
+        nombre: "Manuela Pilar",
+        apellidos: "Góngora Cusiquispe",
+        diplomado: "Título Preliminar del Código Procesal Penal y Jurisprudencia Suprema",
+        finalizacion: "21 de abril de 2023"
+      }
+    ];
+
+    // ====== UI ======
+    const $input = document.getElementById("certInput");
+    const $btn = document.getElementById("searchBtn");
+    const $card = document.getElementById("resultCard");
+    const $err = document.getElementById("errorBox");
+
+    const $libro = document.getElementById("libroVal");
+    const $registro = document.getElementById("registroVal");
+    const $nombre = document.getElementById("nombreVal");
+    const $apellidos = document.getElementById("apellidosVal");
+    const $diplomado = document.getElementById("diplomadoVal");
+    const $fecha = document.getElementById("fechaVal");
+
+    function norm(s){
+      return (s || "").toString().trim().toUpperCase().replace(/\s+/g," ");
+    }
+
+    function buscar(){
+      $err.style.display = "none";
+      $card.style.display = "none";
+      $err.textContent = "";
+
+      const q = norm($input.value);
+      if(!q){
+        $err.textContent = "Ingrese el Número del certificado.";
+        $err.style.display = "block";
+        return;
+      }
+
+      // Permite buscar por:
+      // - ID exacto (CJ-0050-2023-0025)
+      // - o por Libro/Registro (0050-2023 / 0025)
+      const encontrado = CERTIFICADOS.find(c => {
+        const blob = norm([c.id, c.libro, c.registro, c.nombre, c.apellidos, c.diplomado, c.finalizacion].join(" | "));
+        return blob.includes(q);
+      });
+
+      if(!encontrado){
+        $err.textContent = "No se encontró el certificado. Verifique el número e intente nuevamente.";
+        $err.style.display = "block";
+        return;
+      }
+
+      $libro.textContent = encontrado.libro;
+      $registro.textContent = encontrado.registro;
+      $nombre.textContent = encontrado.nombre;
+      $apellidos.textContent = encontrado.apellidos;
+      $diplomado.textContent = encontrado.diplomado;
+      $fecha.textContent = encontrado.finalizacion;
+
+      $card.style.display = "block";
+    }
+
+    $btn.addEventListener("click", buscar);
+    $input.addEventListener("keydown", (e) => {
+      if(e.key === "Enter") buscar();
+    });
+
+    // Auto-busca al cargar (para que se vea al toque en demo)
+    buscar();
+  </script>
+</body>
+</html>
