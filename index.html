@@ -8,7 +8,7 @@
     :root{
       --ink:#0f172a;
       --muted:#6b7280;
-      --bg:#f5f6fa;
+      --bg:#f7c6d9;
       --card:#ffffff;
       --border:#e5e7eb;
       --primary:#1e3a8a;
@@ -186,10 +186,6 @@
         <div class="menu" aria-hidden="true">☰</div>
         <div class="brand">
           <img src="logo-cerejus.png" alt="CEREJUS" style="height:40px;">
-          <div class="brandname">
-            <div class="t1">CEREJUS</div>
-            <div class="t2">Centro de Registro Jurídico</div>
-          </div>
         </div>
       </div>
       <div class="right">
@@ -199,7 +195,7 @@
   </header>
 
   <main>
-    <h1>Verificación de Certificado</h1>
+    <h1 style="color:#ec2a8b;">Verifica tu Certificado</h1>
     <p class="subtitle">
       ¿Cómo verificar un certificado?<br>
       Ingrese el “Número del certificado” y haga clic en el botón “Buscar”.
@@ -208,7 +204,7 @@
     <section class="panel">
       <div class="inputBox">
         <input id="certInput" type="text" value="CJ-0050-2023-0025" placeholder="Ej.: CJ-0050-2023-0025" autocomplete="off" />
-        <button id="searchBtn">Buscar</button>
+        <button id="searchBtn" style="background:#ec2a8b;color:white;border:none;">Buscar</button>
       </div>
 
       <div id="errorBox" class="error"></div>
@@ -336,4 +332,5 @@
   </script>
 </body>
 </html>
+
 
